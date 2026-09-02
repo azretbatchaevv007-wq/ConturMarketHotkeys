@@ -20,8 +20,10 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install PyInstaller
-        run: python -m pip install --upgrade pip pyinstaller
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller pynput
 
       - name: Build EXE
         run: pyinstaller --onefile --windowed --name ConturMarketHotkeys ConturMarketHotkeys_v2/main.py
@@ -29,5 +31,5 @@ jobs:
       - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
-          name: ConturMarketHotkeys-Windows
+          name: ConturMarketHotkeys-Windows-v3
           path: dist/ConturMarketHotkeys.exe
